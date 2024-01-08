@@ -10,6 +10,7 @@ using namespace std;
 //ref link:https://www.youtube.com/watch?v=Eaz0P_gJ9FE&list=PLRwVmtr-pp05LyV3bYHwrFacNSNjbUqS6&index=19
 
 //"Static" means at compile time rather than at run time. means One copy of vTable
+//"Dynamic" means at runtime time
 // every virtual needs a vtable, every type theres different vtable
 // vTable - is essentially a switch statement
 // 
