@@ -19,7 +19,7 @@ using namespace std;
 // 2. Only the virtual functions are put in the vTable
 // 3. One vTable per type thus all the instances of the type shares the vTable
 // 4. vTable is only use in the case of polymorphism/pointer
-//------------------------
+//----------------------------------------------
 
 //struct Animal { void makeSound() { cout << "Animallllll" << endl; } };	// not virtual - not for polymorphism
 struct Animal { 
