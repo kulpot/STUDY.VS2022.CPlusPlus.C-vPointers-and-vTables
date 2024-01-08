@@ -9,14 +9,30 @@ using namespace std;
 // --------------------------- C++ vPointers and vTables ----------------------------
 //ref link:https://www.youtube.com/watch?v=Eaz0P_gJ9FE&list=PLRwVmtr-pp05LyV3bYHwrFacNSNjbUqS6&index=19
 
-//"Static" means at compile time rather than at run time
+//"Static" means at compile time rather than at run time. means One copy of vTable
+// every virtual needs a vtable, every type theres different vtable
+// vTable - is essentially a switch statement
+// 
+// KeyPoints
+// 1. One vTable per type as long as its virtual
+// 2. Only the virtual functions are put in the vTable
+// 3. One vTable per type thus all the instances of the type shares the vTable
+// 4. vTable is only use in the case of polymorphism/pointer
+//------------------------
 
 //struct Animal { void makeSound() { cout << "Animallllll" << endl; } };	// not virtual - not for polymorphism
-struct Animal { virtual void makeSound() { cout << "Animallllll" << endl; } };	//  virtual - for polymorphism
+struct Animal { 
+	virtual void makeSound() { cout << "Animallllll" << endl; } 	//  virtual - for polymorphism
+	void sleep() {}
+	virtual void walk() { cout << "Animal walk()" << endl; }
+};
 
-// overwrite makeSound
+// overwrite makeSound and Pigs walk
 struct Cow : public Animal { void makeSound() { cout << "Moooooo" << endl; } };
-struct Pig : public Animal { void makeSound() { cout << "Oink" << endl; } };
+struct Pig : public Animal { 
+	void makeSound() { cout << "Oink" << endl; }	// overwrite
+	void walk() { cout << "Pig walking" << endl; }		// overwrite 
+};
 struct Donkey : public Animal { void makeSound() { cout << "Hee Haw" << endl; } };
 
 void main()
@@ -38,6 +54,12 @@ void main()
 		break;
 	}
 	animal->makeSound();
+	animal->walk();
+
+	//// ----- none pointer only object --------
+	//Donkey d;
+	//d.walk();
+	//// ----------------------------------------
 	delete animal;
 
 	//Cow betsy;
